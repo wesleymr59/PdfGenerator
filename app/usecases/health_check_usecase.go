@@ -2,10 +2,9 @@ package usecases
 
 import (
 	"fmt"
+	"pdfGenerator/app/entities"
 	"pdfGenerator/app/gateways"
 	"sync"
-
-	"github.com/gin-gonic/gin"
 )
 
 var (
@@ -14,8 +13,7 @@ var (
 	Health_Check_repository gateways.HealthCheckGateway
 )
 
-func HealthCheckUseCase(health_repo gateways.HealthCheckGateway, c *gin.Context) {
-	once.Do(func() { initialize(health_repo) })
-	fmt.Println("aaaaaaaaaaa")
-	fmt.Println(Health_Check_repository.HealthCheck())
+func HealthCheckUseCase(health_repo gateways.HealthCheckGateway) entities.PayloadHealthyCheck {
+	fmt.Println(health_repo.HealthCheck())
+	return health_repo.HealthCheck()
 }
